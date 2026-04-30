@@ -368,10 +368,10 @@
 
         /* ─── About ─── */
         #about {
-            background: var(--off-white);
-            color: var(--black);
+            background: var(--black);
+            color: var(--white);
         }
-        #about .section-heading { color: var(--black); }
+        #about .section-heading { color: var(--white); }
         #about .kicker { color: var(--gold); }
 
         .about-grid {
@@ -385,10 +385,10 @@
             font-size: clamp(1.05rem, 1.7vw, 1.35rem);
             font-weight: 400;
             line-height: 1.85;
-            color: #2e2e2e;
+            color: rgba(255,255,255,0.72);
         }
-        .about-body strong { color: var(--black); font-weight: 700; }
-        .about-body em { font-style: normal; font-weight: 700; color: var(--black); }
+        .about-body strong { color: var(--white); font-weight: 700; }
+        .about-body em { font-style: normal; font-weight: 700; color: var(--white); }
 
         .stat-row {
             display: flex;
@@ -400,7 +400,7 @@
             font-family: var(--display);
             font-size: 4rem;
             line-height: 1;
-            color: var(--black);
+            color: var(--white);
         }
         .stat-lbl {
             font-family: var(--body);
@@ -408,14 +408,15 @@
             font-weight: 700;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(0,0,0,0.4);
+            color: rgba(255,255,255,0.35);
             margin-top: 0.25rem;
         }
 
         /* Right visual block */
         .about-visual {
             aspect-ratio: 3/4;
-            background: var(--black);
+            background: var(--dark);
+            border: 1px solid rgba(255,255,255,0.07);
             position: relative;
             overflow: hidden;
         }
@@ -634,8 +635,8 @@
 
         /* ─── Motto Banner ─── */
         #motto {
-            background: var(--white);
-            color: var(--black);
+            background: var(--black);
+            color: var(--white);
             padding: 7rem 3rem;
             overflow: hidden;
             position: relative;
@@ -650,7 +651,7 @@
         }
         .motto-text .outline {
             color: transparent;
-            -webkit-text-stroke: 2.5px var(--black);
+            -webkit-text-stroke: 2.5px var(--white);
         }
 
         .motto-gold-bar {
@@ -666,7 +667,7 @@
             font-weight: 700;
             letter-spacing: 0.45em;
             text-transform: uppercase;
-            color: rgba(0,0,0,0.35);
+            color: rgba(255,255,255,0.3);
             margin-top: 2.5rem;
         }
 
