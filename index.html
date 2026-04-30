@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Always Family Basketball | Adidas 3 Stripes Gold · Los Angeles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─── Custom Properties ─── */
+        :root {
+            --black:      #080808;
+            --dark:       #101010;
+            --mid:        #181818;
+            --white:      #ffffff;
+            --off-white:  #f2efe9;
+            --gray-light: #e2dfd9;
+            --gold:       #C9A84C;
+            --gold-dim:   rgba(201,168,76,0.35);
+            --display:    'Bebas Neue', sans-serif;
+            --body:       'Barlow Condensed', sans-serif;
+        }
+
+        /* ─── Reset ─── */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--body);
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.032;
+            pointer-events: none;
+            z-index: 9000;
+        }
+
+        /* ─── Navigation ─── */
+        #navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 500;
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+        #navbar.scrolled {
+            background: rgba(8,8,8,0.93);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gold-dim);
+        }
+
+        .nav-logo {
+            font-family: var(--display);
+            font-size: 1.5rem;
+            letter-spacing: 0.08em;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .nav-logo em { color: var(--gold); font-style: normal; }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            font-family: var(--body);
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 600;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px; height: 2px;
+            background: var(--white);
+            transition: all 0.35s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile menu */
+        #mobile-nav {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 400;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            transform: translateX(100%);
+            transition: transform 0.45s cubic-bezier(0.77,0,0.18,1);
+        }
+        #mobile-nav.open { transform: translateX(0); }
+        #mobile-nav a {
+            font-family: var(--display);
+            font-size: 3.5rem;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        #mobile-nav a:hover { color: var(--gold); }
+        .mobile-gold-stripe {
+            width: 40px; height: 3px;
+            background: var(--gold);
+        }
+
+        /* ─── Hero ─── */
+        #hero {
+            position: relative;
+            width: 100%; height: 100vh;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        /* Court SVG background */
+        .hero-court {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-court svg {
+            width: 100%; height: 100%;
+            opacity: 0.06;
+        }
+
+        /* Diagonal stripe pattern */
+        .hero-diagonals {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: repeating-linear-gradient(
+                -52deg,
+                transparent 0px,
+                transparent 58px,
+                rgba(255,255,255,0.018) 58px,
+                rgba(255,255,255,0.018) 60px
+            );
+        }
+
+        /* Edge vignette */
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(8,8,8,0.85) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--body);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            display: block;
+            width: 36px; height: 1px;
+            background: var(--gold-dim);
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(5.5rem, 16vw, 17rem);
+            line-height: 0.86;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+        .hero-title .word-always { color: var(--white); }
+        .hero-title .word-family {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255,255,255,0.9);
+        }
+
+        .hero-tagline {
+            font-family: var(--body);
+            font-size: clamp(0.9rem, 2vw, 1.25rem);
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 3rem;
+        }
+
+        /* Adidas badge */
+        .adidas-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 2.2rem;
+            border: 1px solid var(--gold);
+            position: relative;
+        }
+        .adidas-badge::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border: 1px solid var(--gold-dim);
+            transform: translate(5px,5px);
+            pointer-events: none;
+        }
+
+        .three-stripes {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+        }
+        .three-stripes span {
+            display: block;
+            width: 5px;
+            background: var(--gold);
+            border-radius: 1px;
+        }
+        .three-stripes span:nth-child(1) { height: 11px; }
+        .three-stripes span:nth-child(2) { height: 17px; }
+        .three-stripes span:nth-child(3) { height: 23px; }
+
+        .badge-label {
+            font-family: var(--body);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* Scroll cue */
+        .scroll-cue {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .scroll-cue span {
+            font-family: var(--body);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+        .scroll-line {
+            width: 1px; height: 52px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 0.35; }
+            50%      { opacity: 1; }
+        }
+
+        /* ─── GitHub Strip ─── */
+        #github-strip {
+            background: var(--dark);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            padding: 1rem 3rem;
+            text-align: center;
+        }
+        #github-strip a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-family: var(--body);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        #github-strip a:hover { color: var(--gold); }
+        #github-strip a svg { transition: fill 0.3s; }
+        #github-strip a:hover svg { fill: var(--gold); }
+
+        /* ─── Shared Section Styles ─── */
+        .section-wrap {
+            padding: 8rem 3rem;
+        }
+
+        .kicker {
+            font-family: var(--body);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: var(--display);
+            font-size: clamp(3.2rem, 6.5vw, 7rem);
+            line-height: 0.88;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .gold-rule {
+            width: 52px; height: 3px;
+            background: var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        .inner { max-width: 1380px; margin: 0 auto; }
+
+        /* ─── About ─── */
+        #about {
+            background: var(--off-white);
+            color: var(--black);
+        }
+        #about .section-heading { color: var(--black); }
+        #about .kicker { color: var(--gold); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7rem;
+            align-items: start;
+        }
+
+        .about-body {
+            font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+            font-weight: 400;
+            line-height: 1.85;
+            color: #2e2e2e;
+        }
+        .about-body strong { color: var(--black); font-weight: 700; }
+        .about-body em { font-style: normal; font-weight: 700; color: var(--black); }
+
+        .stat-row {
+            display: flex;
+            gap: 3.5rem;
+            margin-top: 3.5rem;
+        }
+        .stat-item {}
+        .stat-num {
+            font-family: var(--display);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--black);
+        }
+        .stat-lbl {
+            font-family: var(--body);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.4);
+            margin-top: 0.25rem;
+        }
+
+        /* Right visual block */
+        .about-visual {
+            aspect-ratio: 3/4;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-visual-text {
+            font-family: var(--display);
+            font-size: clamp(4.5rem, 8vw, 8rem);
+            color: rgba(255,255,255,0.04);
+            line-height: 0.88;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            letter-spacing: 0.02em;
+        }
+        .about-gold-bar-r {
+            position: absolute;
+            top: 2.5rem; right: -2px;
+            width: 4px; height: 38%;
+            background: var(--gold);
+        }
+        .about-gold-bar-l {
+            position: absolute;
+            bottom: 2.5rem; left: -2px;
+            width: 4px; height: 28%;
+            background: var(--gold);
+        }
+
+        /* ─── Coaches ─── */
+        #coaches {
+            background: var(--black);
+        }
+
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2px;
+        }
+
+        .coach-card {
+            background: var(--dark);
+            padding: 3rem 2.5rem 3.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: background 0.4s;
+        }
+        .coach-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s ease;
+        }
+        .coach-card:hover { background: #131313; }
+        .coach-card:hover::before { transform: scaleX(1); }
+
+        .coach-bg-num {
+            position: absolute;
+            top: 0.5rem; right: 1rem;
+            font-family: var(--display);
+            font-size: 7rem;
+            line-height: 1;
+            color: rgba(255,255,255,0.03);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .coach-badge {
+            display: inline-block;
+            font-family: var(--body);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold-dim);
+            padding: 0.28rem 0.85rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .coach-name {
+            font-family: var(--display);
+            font-size: clamp(2rem,3.5vw,3rem);
+            line-height: 0.92;
+            margin-bottom: 0.6rem;
+        }
+
+        .coach-role {
+            font-family: var(--body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 2rem;
+        }
+
+        .coach-rule {
+            width: 28px; height: 2px;
+            background: var(--gold-dim);
+            margin-bottom: 1.6rem;
+        }
+
+        .coach-creds {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .coach-creds li {
+            font-family: var(--body);
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.58);
+            display: flex;
+            gap: 0.55rem;
+            align-items: baseline;
+        }
+        .coach-creds li::before {
+            content: '—';
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ─── Teams ─── */
+        #teams {
+            background: var(--mid);
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 3rem 2.5rem 3rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.4s;
+        }
+        .team-card:hover { border-color: rgba(201,168,76,0.55); }
+
+        .team-card-texture {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                -48deg,
+                transparent 0px, transparent 18px,
+                rgba(255,255,255,0.014) 18px, rgba(255,255,255,0.014) 19px
+            );
+            pointer-events: none;
+        }
+
+        .team-age {
+            font-family: var(--display);
+            font-size: clamp(5.5rem, 9vw, 10rem);
+            line-height: 0.84;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-kicker {
+            font-family: var(--body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-rule {
+            width: 100%; height: 1px;
+            background: rgba(255,255,255,0.08);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-placeholder {
+            font-family: var(--body);
+            font-size: 0.82rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .team-footer {
+            margin-top: 2.5rem;
+            font-family: var(--body);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── Motto Banner ─── */
+        #motto {
+            background: var(--white);
+            color: var(--black);
+            padding: 7rem 3rem;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+
+        .motto-text {
+            font-family: var(--display);
+            font-size: clamp(3.5rem, 11.5vw, 14rem);
+            line-height: 0.84;
+            text-transform: uppercase;
+        }
+        .motto-text .outline {
+            color: transparent;
+            -webkit-text-stroke: 2.5px var(--black);
+        }
+
+        .motto-gold-bar {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--gold);
+        }
+
+        .motto-sub {
+            font-family: var(--body);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.35);
+            margin-top: 2.5rem;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            background: var(--black);
+            padding: 6rem 3rem 3rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 5rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            max-width: 1380px;
+            margin: 0 auto;
+        }
+
+        .footer-brand-name {
+            font-family: var(--display);
+            font-size: 3.5rem;
+            line-height: 0.88;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-tagline {
+            font-family: var(--body);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.8rem;
+        }
+
+        .footer-affil {
+            font-family: var(--body);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.8;
+        }
+        .footer-affil strong { color: rgba(201,168,76,0.8); font-weight: 600; }
+
+        .footer-col-head {
+            font-family: var(--body);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 1.8rem;
+        }
+
+        .footer-nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        .footer-nav-list a {
+            font-family: var(--body);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-nav-list a:hover { color: var(--gold); }
+
+        .social-row {
+            display: flex;
+            gap: 0.85rem;
+            margin-bottom: 2rem;
+        }
+        .social-btn {
+            width: 44px; height: 44px;
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .social-btn:hover {
+            border-color: var(--gold);
+            background: rgba(201,168,76,0.08);
+        }
+        .social-btn svg {
+            width: 17px; height: 17px;
+            fill: rgba(255,255,255,0.55);
+            transition: fill 0.3s;
+        }
+        .social-btn:hover svg { fill: var(--gold); }
+
+        .footer-bottom {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-copy {
+            font-family: var(--body);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.2);
+        }
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .footer-badge-text {
+            font-family: var(--body);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(201,168,76,0.5);
+        }
+        .footer-stripes {
+            display: flex;
+            align-items: flex-end;
+            gap: 2.5px;
+        }
+        .footer-stripes span {
+            display: block;
+            width: 3px;
+            background: rgba(201,168,76,0.5);
+            border-radius: 1px;
+        }
+        .footer-stripes span:nth-child(1) { height: 8px; }
+        .footer-stripes span:nth-child(2) { height: 12px; }
+        .footer-stripes span:nth-child(3) { height: 16px; }
+
+        /* ─── Scroll-Reveal ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(38px);
+            transition:
+                opacity 0.9s cubic-bezier(0.22,0.61,0.36,1),
+                transform 0.9s cubic-bezier(0.22,0.61,0.36,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-d1 { transition-delay: 0.12s; }
+        .reveal-d2 { transition-delay: 0.24s; }
+        .reveal-d3 { transition-delay: 0.36s; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 1100px) {
+            .about-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .about-visual { display: none; }
+            .coaches-grid { grid-template-columns: 1fr; }
+            .teams-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+        }
+        @media (max-width: 768px) {
+            #navbar { padding: 1.2rem 1.5rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .section-wrap { padding: 5rem 1.5rem; }
+            #github-strip { padding: 0.9rem 1.5rem; }
+            .hero-title { font-size: clamp(4rem,20vw,8rem); }
+            .motto-text { font-size: clamp(3rem,14vw,7rem); }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-bottom { flex-direction: column; gap: 1.2rem; text-align: center; }
+            .stat-row { flex-wrap: wrap; gap: 2rem; }
+        }
+        @media (max-width: 420px) {
+            .hero-title { font-size: clamp(3.2rem,22vw,6rem); }
+            .adidas-badge { padding: 0.65rem 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── Fixed Nav ─── -->
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">AF<em>B</em></a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#coaches">Coaches</a></li>
+        <li><a href="#teams">Teams</a></li>
+        <li><a href="#motto">Mission</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ─── Mobile Nav ─── -->
+<div id="mobile-nav">
+    <a href="#about" class="mob-link">About</a>
+    <div class="mobile-gold-stripe"></div>
+    <a href="#coaches" class="mob-link">Coaches</a>
+    <div class="mobile-gold-stripe"></div>
+    <a href="#teams" class="mob-link">Teams</a>
+    <div class="mobile-gold-stripe"></div>
+    <a href="#motto" class="mob-link">Mission</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+    <div class="hero-court" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <!-- Court border -->
+            <rect x="80" y="40" width="1280" height="820" fill="none" stroke="white" stroke-width="3.5"/>
+            <!-- Half-court line -->
+            <line x1="720" y1="40" x2="720" y2="860" stroke="white" stroke-width="3.5"/>
+            <!-- Center circle -->
+            <circle cx="720" cy="450" r="130" fill="none" stroke="white" stroke-width="3.5"/>
+            <circle cx="720" cy="450" r="8" fill="white"/>
+            <!-- Left paint -->
+            <rect x="80" y="310" width="240" height="280" fill="none" stroke="white" stroke-width="3"/>
+            <!-- Left free-throw circle -->
+            <circle cx="320" cy="450" r="90" fill="none" stroke="white" stroke-width="2.5"/>
+            <!-- Left restricted area -->
+            <path d="M 200 450 m -40 0 a 40 40 0 0 0 80 0" fill="none" stroke="white" stroke-width="2"/>
+            <!-- Left 3-point arc -->
+            <path d="M 80 270 L 420 270 A 270 270 0 0 1 420 630 L 80 630" fill="none" stroke="white" stroke-width="3"/>
+            <!-- Right paint -->
+            <rect x="1120" y="310" width="240" height="280" fill="none" stroke="white" stroke-width="3"/>
+            <!-- Right free-throw circle -->
+            <circle cx="1120" cy="450" r="90" fill="none" stroke="white" stroke-width="2.5"/>
+            <!-- Right restricted area -->
+            <path d="M 1240 450 m -40 0 a 40 40 0 0 1 80 0" fill="none" stroke="white" stroke-width="2"/>
+            <!-- Right 3-point arc -->
+            <path d="M 1360 270 L 1020 270 A 270 270 0 0 0 1020 630 L 1360 630" fill="none" stroke="white" stroke-width="3"/>
+        </svg>
+    </div>
+    <div class="hero-diagonals" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-content" id="hero-content">
+        <p class="hero-eyebrow">Los Angeles, CA &nbsp;·&nbsp; Est. AAU Elite</p>
+        <h1 class="hero-title">
+            <span class="word-always">ALWAYS</span><br>
+            <span class="word-family">FAMILY</span>
+        </h1>
+        <p class="hero-tagline">Always Business. No Excuses.</p>
+        <div class="adidas-badge" aria-label="Adidas 3 Stripes Gold affiliate">
+            <div class="three-stripes" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="badge-label">Adidas 3 Stripes Gold</span>
+        </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ─── GitHub Strip ─── -->
+<div id="github-strip">
+    <a href="https://github.com/matteensekander/always-family-basketball" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="rgba(255,255,255,0.45)">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+        </svg>
+        View on GitHub — matteensekander/always-family-basketball
+    </a>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="section-wrap inner">
+        <div class="about-grid">
+            <div class="about-left">
+                <p class="kicker reveal">Our Mission</p>
+                <h2 class="section-heading reveal reveal-d1">Built<br>Different.</h2>
+                <div class="gold-rule reveal reveal-d2"></div>
+                <p class="about-body reveal reveal-d2">
+                    <strong>Always Family</strong> is an elite AAU basketball program committed to one thing above all — <strong>player progression</strong>. Every drill, every rep, every game is designed with purpose. We don't just develop athletes, we build <strong>competitors who are ready for the next level.</strong>
+                    <br><br>
+                    Based in Los Angeles and competing under the <strong>Adidas 3 Stripes Gold</strong> banner, we represent the highest standard of grassroots basketball on the West Coast.
+                    <br><br>
+                    <strong>Always Business. No Excuses.</strong>
+                </p>
+                <div class="stat-row reveal reveal-d3">
+                    <div class="stat-item">
+                        <div class="stat-num">3</div>
+                        <div class="stat-lbl">Elite Teams</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">LA</div>
+                        <div class="stat-lbl">Home Base</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num">1</div>
+                        <div class="stat-lbl">Standard</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual reveal reveal-d2" aria-hidden="true">
+                <div class="about-visual-text">ALWAYS<br>FAMILY<br>BBALL</div>
+                <div class="about-gold-bar-r"></div>
+                <div class="about-gold-bar-l"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── COACHES ─── -->
+<section id="coaches">
+    <div class="section-wrap inner">
+        <p class="kicker reveal">The Staff</p>
+        <h2 class="section-heading reveal reveal-d1">Coaching<br>Staff</h2>
+        <div class="gold-rule reveal reveal-d2"></div>
+
+        <div class="coaches-grid">
+
+            <!-- Coach Jason Flowers -->
+            <article class="coach-card reveal">
+                <div class="coach-bg-num" aria-hidden="true">01</div>
+                <span class="coach-badge">Head Coach · 17U</span>
+                <h3 class="coach-name">Jason<br>Flowers</h3>
+                <p class="coach-role">Head Coach — 17U Program</p>
+                <div class="coach-rule"></div>
+                <ul class="coach-creds">
+                    <li>Played at UCLA</li>
+                    <li>Former Women's Assistant Coach, CSUN</li>
+                    <li>Current Head Coach — LACC (JUCO)</li>
+                </ul>
+            </article>
+
+            <!-- Coach Alex Sokol -->
+            <article class="coach-card reveal reveal-d1">
+                <div class="coach-bg-num" aria-hidden="true">02</div>
+                <span class="coach-badge">Coach · 16U</span>
+                <h3 class="coach-name">Alexander<br>Sokol</h3>
+                <p class="coach-role">Coach — 16U Program</p>
+                <div class="coach-rule"></div>
+                <ul class="coach-creds">
+                    <li>D1/D2 career at CSUN &amp; Cal State LA</li>
+                    <li>Decorated collegiate career</li>
+                    <li>Championship pedigree</li>
+                </ul>
+            </article>
+
+            <!-- Coach Unc -->
+            <article class="coach-card reveal reveal-d2">
+                <div class="coach-bg-num" aria-hidden="true">03</div>
+                <span class="coach-badge">Coach · 15U</span>
+                <h3 class="coach-name">Coach<br>Unc</h3>
+                <p class="coach-role">Coach — 15U Program</p>
+                <div class="coach-rule"></div>
+                <ul class="coach-creds">
+                    <li>Played JUCO ball at LACC</li>
+                    <li>Now pursuing his coaching career</li>
+                    <li>Developing the next generation</li>
+                </ul>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ─── TEAMS ─── -->
+<section id="teams">
+    <div class="section-wrap inner">
+        <p class="kicker reveal">Our Programs</p>
+        <h2 class="section-heading reveal reveal-d1">The<br>Teams</h2>
+        <div class="gold-rule reveal reveal-d2"></div>
+
+        <div class="teams-grid">
+
+            <article class="team-card reveal">
+                <div class="team-card-texture" aria-hidden="true"></div>
+                <div class="team-age">17U</div>
+                <p class="team-kicker">Elite Program · Coach Jason Flowers</p>
+                <div class="team-rule"></div>
+                <p class="team-placeholder">Roster &amp; Schedule — Coming Soon</p>
+                <div class="team-footer">Los Angeles, CA</div>
+            </article>
+
+            <article class="team-card reveal reveal-d1">
+                <div class="team-card-texture" aria-hidden="true"></div>
+                <div class="team-age">16U</div>
+                <p class="team-kicker">Elite Program · Coach Alexander Sokol</p>
+                <div class="team-rule"></div>
+                <p class="team-placeholder">Roster &amp; Schedule — Coming Soon</p>
+                <div class="team-footer">Los Angeles, CA</div>
+            </article>
+
+            <article class="team-card reveal reveal-d2">
+                <div class="team-card-texture" aria-hidden="true"></div>
+                <div class="team-age">15U</div>
+                <p class="team-kicker">Elite Program · Coach Unc</p>
+                <div class="team-rule"></div>
+                <p class="team-placeholder">Roster &amp; Schedule — Coming Soon</p>
+                <div class="team-footer">Los Angeles, CA</div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ─── MOTTO BANNER ─── -->
+<section id="motto" aria-label="Team motto">
+    <div class="motto-text reveal">
+        <div>ALWAYS</div>
+        <div class="outline">BUSINESS.</div>
+        <div>NO</div>
+        <div class="outline">EXCUSES.</div>
+    </div>
+    <p class="motto-sub reveal reveal-d1">Always Family Basketball · Los Angeles · Adidas 3 Stripes Gold</p>
+    <div class="motto-gold-bar" aria-hidden="true"></div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <div class="footer-brand-name">ALWAYS<br>FAMILY</div>
+            <p class="footer-tagline">Always Business. No Excuses.</p>
+            <p class="footer-affil">
+                Proudly competing under the<br>
+                <strong>Adidas 3 Stripes Gold</strong> program.<br>
+                Los Angeles, California.
+            </p>
+        </div>
+
+        <div>
+            <p class="footer-col-head">Navigate</p>
+            <ul class="footer-nav-list">
+                <li><a href="#about">About</a></li>
+                <li><a href="#coaches">Coaching Staff</a></li>
+                <li><a href="#teams">Teams</a></li>
+                <li><a href="#motto">Mission</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <p class="footer-col-head">Connect</p>
+            <div class="social-row">
+                <!-- Instagram -->
+                <a href="#" class="social-btn" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <!-- X / Twitter -->
+                <a href="#" class="social-btn" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <!-- YouTube -->
+                <a href="#" class="social-btn" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+            <p class="footer-affil" style="font-size:0.8rem;">
+                Questions or inquiries?<br>
+                <a href="mailto:adeebjon@gmail.com" style="color: rgba(201,168,76,0.7); text-decoration:none;">adeebjon@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Always Family Basketball. Los Angeles, CA. All Rights Reserved.</p>
+        <div class="footer-badge">
+            <div class="footer-stripes" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+            <span class="footer-badge-text">Adidas 3 Stripes Gold</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /* ── Nav scroll effect ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Hamburger ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.mob-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    /* ── Scroll-reveal via IntersectionObserver ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -55px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── Hero entrance animation ── */
+    const heroContent = document.getElementById('hero-content');
+    heroContent.style.cssText = 'opacity:0; transform:translateY(28px);';
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            heroContent.style.cssText =
+                'opacity:1; transform:translateY(0); transition: opacity 1.3s ease, transform 1.3s ease;';
+        }, 200);
+    });
+
+    /* ── Smooth anchor scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
