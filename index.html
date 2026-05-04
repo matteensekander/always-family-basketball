@@ -12,7 +12,7 @@
 /* Tweakable defaults — host rewrites this block on disk */
 window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
   "accent": "#C9A84C",
-  "heroPattern": "court",
+  "heroPattern": "none",
   "heroWordTreatment": "split",
   "mottoInverted": true,
   "animationDensity": "rich",
@@ -524,15 +524,32 @@ body.grain::after{
   background-size:48px 48px;
   opacity:.6;
 }
-.av-silhouette{
-  position:absolute;inset:0;
-  display:flex;align-items:flex-end;justify-content:center;
+.av-typeblock{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:2.4rem 2rem 3.4rem;gap:.05em;
 }
-.av-silhouette svg{
-  width:88%;height:auto;
-  fill:var(--white);
-  opacity:.92;
-  filter:drop-shadow(0 0 80px rgba(201,168,76,.08));
+.av-typeblock .av-line{
+  font-family:var(--display);
+  font-size:clamp(1.8rem,4.4vw,3.6rem);
+  line-height:.92;letter-spacing:-.005em;
+  color:var(--white);text-transform:uppercase;
+}
+.av-typeblock .av-line.outline{
+  color:transparent;
+  -webkit-text-stroke:1.2px rgba(255,255,255,.55);
+}
+.av-logo-wrap{
+  position:absolute;top:0;left:0;right:0;
+  height:54%;z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem;
+}
+.av-logo{
+  max-width:62%;max-height:100%;
+  width:auto;height:auto;
+  filter:invert(1) brightness(1.05);
+  opacity:.95;
 }
 .av-corner{
   position:absolute;width:18px;height:18px;
@@ -665,6 +682,24 @@ body.grain::after{
   transition:transform .6s var(--ease), fill .4s var(--ease);
 }
 .coach-card:hover .coach-portrait svg{transform:translateX(-50%) translateY(-4px)}
+.coach-portrait .cp-photo{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  filter:grayscale(1) contrast(1.05) brightness(.92);
+  transition:transform .8s var(--ease), filter .5s var(--ease);
+  z-index:1;
+}
+.coach-portrait::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg, rgba(8,8,8,0) 45%, rgba(8,8,8,.55) 100%);
+}
+.coach-card:hover .coach-portrait .cp-photo{
+  transform:scale(1.04);
+  filter:grayscale(.85) contrast(1.08) brightness(.96);
+}
+.coach-portrait .cp-tag,
+.coach-portrait .cp-num{ z-index:3; }
 .coach-portrait .cp-tag{
   position:absolute;top:.85rem;left:.95rem;
   font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
@@ -920,6 +955,7 @@ footer{
   letter-spacing:-.005em;
   margin-bottom:1.2rem;
 }
+.footer-brand-col{ text-align:center; }
 .footer-tagline{
   font-family:var(--body);font-weight:700;
   font-size:.75rem;letter-spacing:.32em;text-transform:uppercase;
@@ -1190,22 +1226,16 @@ body.anim-reduced .hero-title .row .inner{animation-duration:.4s}
         <div class="av-grid"></div>
         <span class="av-corner tl"></span><span class="av-corner tr"></span>
         <span class="av-corner bl"></span><span class="av-corner br"></span>
-        <span class="av-watermark">ALWAYS · FAMILY</span>
-        <div class="av-silhouette">
-          <!-- Ball-handler silhouette -->
-          <svg viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
-            <!-- Head -->
-            <circle cx="108" cy="40" r="18"/>
-            <!-- Shoulders + torso -->
-            <path d="M88 60 Q70 75 66 110 L60 175 Q58 195 70 215 L80 250 L86 250 Q88 240 90 215 L92 180 L100 180 L102 215 Q104 248 110 250 L116 250 Q124 230 122 200 L120 160 L130 158 L142 195 Q150 210 148 230 L160 230 L165 220 Q168 200 158 175 L150 110 Q146 80 130 65 Z"/>
-            <!-- Right arm raised holding ball -->
-            <path d="M138 70 L172 50 L182 60 L150 84 Z"/>
-            <!-- Basketball -->
-            <circle cx="178" cy="48" r="14"/>
-            <path d="M165 44 Q178 40 191 46 M178 35 L178 61 M168 39 Q178 50 188 39" fill="none" stroke="#080808" stroke-width="1.4"/>
-            <!-- Legs -->
-            <path d="M82 250 L70 320 L92 320 L100 270 L108 320 L130 320 L122 250 Z"/>
-          </svg>
+        <div class="av-logo-wrap">
+          <img class="av-logo" src="assets/adidas-3-stripes-gold-logo.png" alt="Adidas 3 Stripes Gold">
+        </div>
+        <div class="av-typeblock">
+          <span class="av-line">EVERY</span>
+          <span class="av-line outline">REP.</span>
+          <span class="av-line">EVERY</span>
+          <span class="av-line outline">GAME.</span>
+          <span class="av-line">ON</span>
+          <span class="av-line">PURPOSE.</span>
         </div>
         <div class="av-meta">
           <span>FILE / 002</span>
@@ -1254,18 +1284,10 @@ body.anim-reduced .hero-title .row .inner{animation-duration:.4s}
         <div class="coach-bg-num" aria-hidden="true">01</div>
         <div class="coach-stripes-wm" aria-hidden="true"><span></span><span></span><span></span></div>
 
-        <div class="coach-portrait" aria-hidden="true">
-          <div class="cp-grid"></div>
+        <div class="coach-portrait">
+          <img class="cp-photo" src="coaches/jason-flowers.png" alt="Coach Jason Flowers" loading="lazy">
           <span class="cp-tag">17U · HEAD COACH</span>
           <span class="cp-num">01</span>
-          <!-- Coaching pose: arms crossed -->
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="38" r="20"/>
-            <path d="M100 60 Q72 64 60 95 L52 145 Q50 165 56 180 L60 240 L80 240 L86 200 L88 175 L96 175 L100 200 L100 240 L120 240 L120 200 L122 175 L130 175 L132 200 L140 240 L160 240 L160 180 Q164 168 162 145 L154 95 Q142 64 116 60 Z"/>
-            <!-- Arms folded -->
-            <path d="M62 110 L138 130 L138 138 L62 118 Z"/>
-            <path d="M62 122 L138 142 L138 150 L62 130 Z"/>
-          </svg>
         </div>
 
         <span class="coach-badge"><span class="dot"></span>Head Coach · 17U</span>
@@ -1284,19 +1306,10 @@ body.anim-reduced .hero-title .row .inner{animation-duration:.4s}
         <div class="coach-bg-num" aria-hidden="true">02</div>
         <div class="coach-stripes-wm" aria-hidden="true"><span></span><span></span><span></span></div>
 
-        <div class="coach-portrait" aria-hidden="true">
-          <div class="cp-grid"></div>
+        <div class="coach-portrait">
+          <img class="cp-photo" src="coaches/alex-sokol.png" alt="Coach Alexander Sokol" loading="lazy">
           <span class="cp-tag">16U · HEAD COACH</span>
           <span class="cp-num">02</span>
-          <!-- Coaching pose: pointing/instructing -->
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="92" cy="38" r="20"/>
-            <path d="M92 60 Q66 66 56 96 L48 150 Q46 170 54 184 L58 240 L78 240 L82 195 L86 175 L94 175 L98 195 L98 240 L118 240 L120 195 L124 175 L132 175 L134 200 L142 240 L162 240 L160 184 Q166 170 162 150 L154 96 Q142 66 116 60 Z"/>
-            <!-- Pointing arm out -->
-            <path d="M114 95 L182 78 L188 88 L116 110 Z"/>
-            <!-- Other arm down -->
-            <path d="M62 100 L52 170 L62 172 L74 105 Z"/>
-          </svg>
         </div>
 
         <span class="coach-badge"><span class="dot"></span>Head Coach · 16U</span>
@@ -1315,24 +1328,10 @@ body.anim-reduced .hero-title .row .inner{animation-duration:.4s}
         <div class="coach-bg-num" aria-hidden="true">03</div>
         <div class="coach-stripes-wm" aria-hidden="true"><span></span><span></span><span></span></div>
 
-        <div class="coach-portrait" aria-hidden="true">
-          <div class="cp-grid"></div>
+        <div class="coach-portrait">
+          <img class="cp-photo" src="coaches/coach-unc.png" alt="Coach Unc (Bryce)" loading="lazy">
           <span class="cp-tag">15U · HEAD COACH</span>
           <span class="cp-num">03</span>
-          <!-- Coaching pose: clipboard -->
-          <svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="38" r="20"/>
-            <path d="M100 60 Q74 64 62 96 L54 150 Q52 170 60 184 L64 240 L84 240 L88 200 L92 175 L100 175 L104 200 L104 240 L124 240 L126 200 L130 175 L138 175 L140 200 L146 240 L166 240 L162 184 Q168 168 164 150 L156 96 Q144 64 116 60 Z"/>
-            <!-- Clipboard -->
-            <rect x="78" y="120" width="44" height="56" rx="2"/>
-            <rect x="92" y="116" width="16" height="8" rx="1" fill="#080808"/>
-            <line x1="84" y1="135" x2="116" y2="135" stroke="#080808" stroke-width="1.4"/>
-            <line x1="84" y1="143" x2="116" y2="143" stroke="#080808" stroke-width="1.4"/>
-            <line x1="84" y1="151" x2="106" y2="151" stroke="#080808" stroke-width="1.4"/>
-            <!-- Holding arms -->
-            <path d="M62 108 L78 130 L80 140 L60 122 Z"/>
-            <path d="M138 108 L122 130 L120 140 L140 122 Z"/>
-          </svg>
         </div>
 
         <span class="coach-badge"><span class="dot"></span>Head Coach · 15U</span>
@@ -1465,7 +1464,7 @@ body.anim-reduced .hero-title .row .inner{animation-duration:.4s}
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-grid">
-    <div>
+    <div class="footer-brand-col">
       <div class="footer-brand-name">ALWAYS<br>FAMILY</div>
       <p class="footer-tagline">Always Business. No Excuses.</p>
       <p class="footer-affil">
